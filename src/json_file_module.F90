@@ -245,9 +245,11 @@
         procedure,pass(me) :: MAYBEWRAP(json_file_valid_path_op)
 
         generic,public :: assignment(=) => assign_json_file,&
-                                           assign_json_file_to_string
+                                           assign_json_file_to_string,&
+                                           MAYBEWRAP(assign_string_to_json_file)
         procedure :: assign_json_file
         procedure,pass(me) :: assign_json_file_to_string
+        procedure :: MAYBEWRAP(assign_string_to_json_file)
 
         ! ***************************************************
         ! private routines
@@ -1165,7 +1167,7 @@
     type(json_core) :: core_copy !! a copy of `core` from `me`
 
     if (me%core%failed() .or. .not. associated(me%p)) then
-        str = ''
+        str = CK_''
     else
 
         ! This is sort of a hack. Since `me` has to have `intent(in)`
@@ -1177,11 +1179,48 @@
         core_copy = me%core ! copy the parser settings
 
         call core_copy%serialize(me%p,str)
-        if (me%core%failed()) str = ''
+        if (me%core%failed()) str = CK_''
 
     end if
 
     end subroutine assign_json_file_to_string
+!*****************************************************************************************
+
+!*****************************************************************************************
+!> author: Jacob Williams
+!
+!  Assignment operator for [[json_core(type)]] = character.
+!  This is just a wrapper for the [[json_file_load_from_string]] routine.
+
+    subroutine assign_string_to_json_file(me,str)
+
+    implicit none
+
+    class(json_file),intent(inout) :: me
+    character(kind=CK,len=*),intent(in) :: str
+
+    if (associated(me%p)) call me%destroy()
+    if (me%core%failed()) call me%core%clear_exceptions()
+    call me%deserialize(str)
+
+    end subroutine assign_string_to_json_file
+!*****************************************************************************************
+
+!*****************************************************************************************
+!> author: Jacob Williams
+!
+!  Alternate version of [[assign_string_to_json_file]], where "str" is kind=CDK.
+
+    subroutine wrap_assign_string_to_json_file(me,str)
+
+    implicit none
+
+    class(json_file),intent(inout) :: me
+    character(kind=CDK,len=*),intent(in) :: str
+
+    call me%assign_string_to_json_file(to_unicode(str))
+
+    end subroutine wrap_assign_string_to_json_file
 !*****************************************************************************************
 
 !*****************************************************************************************
@@ -1361,7 +1400,7 @@
     type(json_value),pointer,intent(out) :: p      !! pointer to the variable
     logical(LK),intent(out),optional     :: found  !! if it was really found
 
-    call me%core%get(me%p, path=path, p=p, found=found)
+    call me%core%get(me%p, path, p, found)
 
     end subroutine json_file_get_object
 !*****************************************************************************************
@@ -1390,16 +1429,17 @@
 !
 !  Get an integer value from a JSON file.
 
-    subroutine json_file_get_integer(me, path, val, found)
+    subroutine json_file_get_integer(me, path, val, found, default)
 
     implicit none
 
     class(json_file),intent(inout)      :: me
-    character(kind=CK,len=*),intent(in) :: path   !! the path to the variable
-    integer(IK),intent(out)             :: val    !! value
-    logical(LK),intent(out),optional    :: found  !! if it was really found
+    character(kind=CK,len=*),intent(in) :: path    !! the path to the variable
+    integer(IK),intent(out)             :: val     !! value
+    logical(LK),intent(out),optional    :: found   !! if it was really found
+    integer(IK),intent(in),optional     :: default
 
-    call me%core%get(me%p, path=path, value=val, found=found)
+    call me%core%get(me%p, path, val, found, default)
 
     end subroutine json_file_get_integer
 !*****************************************************************************************
@@ -1408,7 +1448,7 @@
 !>
 !  Alternate version of [[json_file_get_integer]], where "path" is kind=CDK.
 
-    subroutine wrap_json_file_get_integer(me, path, val, found)
+    subroutine wrap_json_file_get_integer(me, path, val, found, default)
 
     implicit none
 
@@ -1416,8 +1456,9 @@
     character(kind=CDK,len=*),intent(in) :: path   !! the path to the variable
     integer(IK),intent(out)              :: val    !! value
     logical(LK),intent(out),optional     :: found  !! if it was really found
+    integer(IK),intent(in),optional      :: default
 
-    call me%get(to_unicode(path), val, found)
+    call me%get(to_unicode(path), val, found, default)
 
     end subroutine wrap_json_file_get_integer
 !*****************************************************************************************
@@ -1428,7 +1469,7 @@
 !
 !  Get an integer vector from a JSON file.
 
-    subroutine json_file_get_integer_vec(me, path, vec, found)
+    subroutine json_file_get_integer_vec(me, path, vec, found, default)
 
     implicit none
 
@@ -1436,8 +1477,9 @@
     character(kind=CK,len=*),intent(in)              :: path   !! the path to the variable
     integer(IK),dimension(:),allocatable,intent(out) :: vec    !! the value vector
     logical(LK),intent(out),optional                 :: found  !! if it was really found
+    integer(IK),dimension(:),intent(in),optional     :: default
 
-    call me%core%get(me%p, path, vec, found)
+    call me%core%get(me%p, path, vec, found, default)
 
     end subroutine json_file_get_integer_vec
 !*****************************************************************************************
@@ -1446,7 +1488,7 @@
 !>
 !  Alternate version of [[json_file_get_integer_vec]], where "path" is kind=CDK.
 
-    subroutine wrap_json_file_get_integer_vec(me, path, vec, found)
+    subroutine wrap_json_file_get_integer_vec(me, path, vec, found, default)
 
     implicit none
 
@@ -1454,8 +1496,9 @@
     character(kind=CDK,len=*),intent(in)             :: path  !! the path to the variable
     integer(IK),dimension(:),allocatable,intent(out) :: vec   !! the value vector
     logical(LK),intent(out),optional                 :: found !! if it was really found
+    integer(IK),dimension(:),intent(in),optional     :: default
 
-    call me%get(to_unicode(path), vec, found)
+    call me%get(to_unicode(path), vec, found, default)
 
     end subroutine wrap_json_file_get_integer_vec
 !*****************************************************************************************
@@ -1466,7 +1509,7 @@
 !
 !  Get a real(RK) variable value from a JSON file.
 
-    subroutine json_file_get_real (me, path, val, found)
+    subroutine json_file_get_real (me, path, val, found, default)
 
     implicit none
 
@@ -1474,8 +1517,9 @@
     character(kind=CK,len=*),intent(in) :: path  !! the path to the variable
     real(RK),intent(out)                :: val   !! value
     logical(LK),intent(out),optional    :: found !! if it was really found
+    real(RK),intent(in),optional        :: default
 
-    call me%core%get(me%p, path=path, value=val, found=found)
+    call me%core%get(me%p, path, val, found, default)
 
     end subroutine json_file_get_real
 !*****************************************************************************************
@@ -1484,7 +1528,7 @@
 !>
 !  Alternate version of [[json_file_get_real]], where "path" is kind=CDK.
 
-    subroutine wrap_json_file_get_real (me, path, val, found)
+    subroutine wrap_json_file_get_real (me, path, val, found, default)
 
     implicit none
 
@@ -1492,8 +1536,9 @@
     character(kind=CDK,len=*),intent(in) :: path  !! the path to the variable
     real(RK),intent(out)                 :: val   !! value
     logical(LK),intent(out),optional     :: found !! if it was really found
+    real(RK),intent(in),optional         :: default
 
-    call me%get(to_unicode(path), val, found)
+    call me%get(to_unicode(path), val, found, default)
 
     end subroutine wrap_json_file_get_real
 !*****************************************************************************************
@@ -1504,7 +1549,7 @@
 !
 !  Get a real(RK) vector from a JSON file.
 
-    subroutine json_file_get_real_vec(me, path, vec, found)
+    subroutine json_file_get_real_vec(me, path, vec, found, default)
 
     implicit none
 
@@ -1512,8 +1557,9 @@
     character(kind=CK,len=*),intent(in)           :: path  !! the path to the variable
     real(RK),dimension(:),allocatable,intent(out) :: vec   !! the value vector
     logical(LK),intent(out),optional              :: found !! if it was really found
+    real(RK),dimension(:),intent(in),optional     :: default
 
-    call me%core%get(me%p, path, vec, found)
+    call me%core%get(me%p, path, vec, found, default)
 
     end subroutine json_file_get_real_vec
 !*****************************************************************************************
@@ -1522,7 +1568,7 @@
 !>
 !  Alternate version of [[json_file_get_real_vec]], where "path" is kind=CDK.
 
-    subroutine wrap_json_file_get_real_vec(me, path, vec, found)
+    subroutine wrap_json_file_get_real_vec(me, path, vec, found, default)
 
     implicit none
 
@@ -1530,8 +1576,9 @@
     character(kind=CDK,len=*),intent(in)          :: path  !! the path to the variable
     real(RK),dimension(:),allocatable,intent(out) :: vec   !! the value vector
     logical(LK),intent(out),optional              :: found !! if it was really found
+    real(RK),dimension(:),intent(in),optional     :: default
 
-    call me%get(to_unicode(path), vec, found)
+    call me%get(to_unicode(path), vec, found, default)
 
     end subroutine wrap_json_file_get_real_vec
 !*****************************************************************************************
@@ -1543,7 +1590,7 @@
 !
 !  Alternate version of [[json_file_get_real]] where `val` is `real32`.
 
-    subroutine json_file_get_real32 (me, path, val, found)
+    subroutine json_file_get_real32 (me, path, val, found, default)
 
     implicit none
 
@@ -1551,8 +1598,9 @@
     character(kind=CK,len=*),intent(in) :: path  !! the path to the variable
     real(real32),intent(out)            :: val   !! value
     logical(LK),intent(out),optional    :: found !! if it was really found
+    real(real32),intent(in),optional    :: default
 
-    call me%core%get(me%p, path=path, value=val, found=found)
+    call me%core%get(me%p, path, val, found, default)
 
     end subroutine json_file_get_real32
 !*****************************************************************************************
@@ -1561,7 +1609,7 @@
 !>
 !  Alternate version of [[json_file_get_real32]], where "path" is kind=CDK.
 
-    subroutine wrap_json_file_get_real32 (me, path, val, found)
+    subroutine wrap_json_file_get_real32 (me, path, val, found, default)
 
     implicit none
 
@@ -1569,8 +1617,9 @@
     character(kind=CDK,len=*),intent(in) :: path  !! the path to the variable
     real(real32),intent(out)             :: val   !! value
     logical(LK),intent(out),optional     :: found !! if it was really found
+    real(real32),intent(in),optional     :: default
 
-    call me%get(to_unicode(path), val, found)
+    call me%get(to_unicode(path), val, found, default)
 
     end subroutine wrap_json_file_get_real32
 !*****************************************************************************************
@@ -1581,7 +1630,7 @@
 !
 !  Alternate version of [[json_file_get_real_vec]] where `vec` is `real32`.
 
-    subroutine json_file_get_real32_vec(me, path, vec, found)
+    subroutine json_file_get_real32_vec(me, path, vec, found, default)
 
     implicit none
 
@@ -1589,8 +1638,9 @@
     character(kind=CK,len=*),intent(in)               :: path  !! the path to the variable
     real(real32),dimension(:),allocatable,intent(out) :: vec   !! the value vector
     logical(LK),intent(out),optional                  :: found !! if it was really found
+    real(real32),dimension(:),intent(in),optional     :: default
 
-    call me%core%get(me%p, path, vec, found)
+    call me%core%get(me%p, path, vec, found, default)
 
     end subroutine json_file_get_real32_vec
 !*****************************************************************************************
@@ -1599,7 +1649,7 @@
 !>
 !  Alternate version of [[json_file_get_real32_vec]], where "path" is kind=CDK.
 
-    subroutine wrap_json_file_get_real32_vec(me, path, vec, found)
+    subroutine wrap_json_file_get_real32_vec(me, path, vec, found, default)
 
     implicit none
 
@@ -1607,8 +1657,9 @@
     character(kind=CDK,len=*),intent(in)              :: path  !! the path to the variable
     real(real32),dimension(:),allocatable,intent(out) :: vec   !! the value vector
     logical(LK),intent(out),optional                  :: found !! if it was really found
+    real(real32),dimension(:),intent(in),optional     :: default
 
-    call me%get(to_unicode(path), vec, found)
+    call me%get(to_unicode(path), vec, found, default)
 
     end subroutine wrap_json_file_get_real32_vec
 !*****************************************************************************************
@@ -1621,7 +1672,7 @@
 !
 !  Alternate version of [[json_file_get_real]] where `val` is `real64`.
 
-    subroutine json_file_get_real64 (me, path, val, found)
+    subroutine json_file_get_real64 (me, path, val, found, default)
 
     implicit none
 
@@ -1629,8 +1680,9 @@
     character(kind=CK,len=*),intent(in) :: path  !! the path to the variable
     real(real64),intent(out)            :: val   !! value
     logical(LK),intent(out),optional    :: found !! if it was really found
+    real(real64),intent(in),optional    :: default
 
-    call me%core%get(me%p, path=path, value=val, found=found)
+    call me%core%get(me%p, path, val, found, default)
 
     end subroutine json_file_get_real64
 !*****************************************************************************************
@@ -1639,7 +1691,7 @@
 !>
 !  Alternate version of [[json_file_get_real64]], where "path" is kind=CDK.
 
-    subroutine wrap_json_file_get_real64 (me, path, val, found)
+    subroutine wrap_json_file_get_real64 (me, path, val, found, default)
 
     implicit none
 
@@ -1647,8 +1699,9 @@
     character(kind=CDK,len=*),intent(in) :: path  !! the path to the variable
     real(real64),intent(out)             :: val   !! value
     logical(LK),intent(out),optional     :: found !! if it was really found
+    real(real64),intent(in),optional     :: default
 
-    call me%get(to_unicode(path), val, found)
+    call me%get(to_unicode(path), val, found, default)
 
     end subroutine wrap_json_file_get_real64
 !*****************************************************************************************
@@ -1659,7 +1712,7 @@
 !
 !  Alternate version of [[json_file_get_real_vec]] where `vec` is `real64`.
 
-    subroutine json_file_get_real64_vec(me, path, vec, found)
+    subroutine json_file_get_real64_vec(me, path, vec, found, default)
 
     implicit none
 
@@ -1667,8 +1720,9 @@
     character(kind=CK,len=*),intent(in)               :: path  !! the path to the variable
     real(real64),dimension(:),allocatable,intent(out) :: vec   !! the value vector
     logical(LK),intent(out),optional                  :: found !! if it was really found
+    real(real64),dimension(:),intent(in),optional     :: default
 
-    call me%core%get(me%p, path, vec, found)
+    call me%core%get(me%p, path, vec, found, default)
 
     end subroutine json_file_get_real64_vec
 !*****************************************************************************************
@@ -1677,7 +1731,7 @@
 !>
 !  Alternate version of [[json_file_get_real64_vec]], where "path" is kind=CDK.
 
-    subroutine wrap_json_file_get_real64_vec(me, path, vec, found)
+    subroutine wrap_json_file_get_real64_vec(me, path, vec, found, default)
 
     implicit none
 
@@ -1685,8 +1739,9 @@
     character(kind=CDK,len=*),intent(in)              :: path  !! the path to the variable
     real(real64),dimension(:),allocatable,intent(out) :: vec   !! the value vector
     logical(LK),intent(out),optional                  :: found !! if it was really found
+    real(real64),dimension(:),intent(in),optional     :: default
 
-    call me%get(to_unicode(path), vec, found)
+    call me%get(to_unicode(path), vec, found, default)
 
     end subroutine wrap_json_file_get_real64_vec
 !*****************************************************************************************
@@ -1698,7 +1753,7 @@
 !
 !  Get a logical(LK) value from a JSON file.
 
-    subroutine json_file_get_logical(me,path,val,found)
+    subroutine json_file_get_logical(me,path,val,found,default)
 
     implicit none
 
@@ -1706,8 +1761,9 @@
     character(kind=CK,len=*),intent(in)  :: path   !! the path to the variable
     logical(LK),intent(out)              :: val    !! value
     logical(LK),intent(out),optional     :: found  !! if it was really found
+    logical(LK),intent(in),optional      :: default
 
-    call me%core%get(me%p, path=path, value=val, found=found)
+    call me%core%get(me%p, path, val, found, default)
 
     end subroutine json_file_get_logical
 !*****************************************************************************************
@@ -1716,7 +1772,7 @@
 !>
 !  Alternate version of [[json_file_get_logical]], where "path" is kind=CDK.
 
-    subroutine wrap_json_file_get_logical(me,path,val,found)
+    subroutine wrap_json_file_get_logical(me,path,val,found,default)
 
     implicit none
 
@@ -1724,8 +1780,9 @@
     character(kind=CDK,len=*),intent(in) :: path   !! the path to the variable
     logical(LK),intent(out)              :: val    !! value
     logical(LK),intent(out),optional     :: found  !! if it was really found
+    logical(LK),intent(in),optional      :: default
 
-    call me%get(to_unicode(path), val, found)
+    call me%get(to_unicode(path), val, found, default)
 
     end subroutine wrap_json_file_get_logical
 !*****************************************************************************************
@@ -1736,7 +1793,7 @@
 !
 !  Get a logical(LK) vector from a JSON file.
 
-    subroutine json_file_get_logical_vec(me, path, vec, found)
+    subroutine json_file_get_logical_vec(me, path, vec, found, default)
 
     implicit none
 
@@ -1744,8 +1801,9 @@
     character(kind=CK,len=*),intent(in)              :: path  !! the path to the variable
     logical(LK),dimension(:),allocatable,intent(out) :: vec   !! the value vector
     logical(LK),intent(out),optional                 :: found !! if it was really found
+    logical(LK),dimension(:),intent(in),optional     :: default
 
-    call me%core%get(me%p, path, vec, found)
+    call me%core%get(me%p, path, vec, found, default)
 
     end subroutine json_file_get_logical_vec
 !*****************************************************************************************
@@ -1754,7 +1812,7 @@
 !>
 !  Alternate version of [[json_file_get_logical_vec]], where "path" is kind=CDK.
 
-    subroutine wrap_json_file_get_logical_vec(me, path, vec, found)
+    subroutine wrap_json_file_get_logical_vec(me, path, vec, found, default)
 
     implicit none
 
@@ -1762,8 +1820,9 @@
     character(kind=CDK,len=*),intent(in)             :: path  !! the path to the variable
     logical(LK),dimension(:),allocatable,intent(out) :: vec   !! the value vector
     logical(LK),intent(out),optional                 :: found !! if it was really found
+    logical(LK),dimension(:),intent(in),optional     :: default
 
-    call me%get(to_unicode(path), vec, found)
+    call me%get(to_unicode(path), vec, found, default)
 
     end subroutine wrap_json_file_get_logical_vec
 !*****************************************************************************************
@@ -1775,7 +1834,7 @@
 !  Get a character string from a json file.
 !  The output val is an allocatable character string.
 
-    subroutine json_file_get_string(me, path, val, found)
+    subroutine json_file_get_string(me, path, val, found, default)
 
     implicit none
 
@@ -1783,8 +1842,9 @@
     character(kind=CK,len=*),intent(in)              :: path  !! the path to the variable
     character(kind=CK,len=:),allocatable,intent(out) :: val   !! value
     logical(LK),intent(out),optional                 :: found !! if it was really found
+    character(kind=CK,len=*),intent(in),optional     :: default
 
-    call me%core%get(me%p, path=path, value=val, found=found)
+    call me%core%get(me%p, path, val, found, default)
 
     end subroutine json_file_get_string
 !*****************************************************************************************
@@ -1793,7 +1853,7 @@
 !>
 !  Alternate version of [[json_file_get_string]], where "path" is kind=CDK.
 
-    subroutine wrap_json_file_get_string(me, path, val, found)
+    subroutine wrap_json_file_get_string(me, path, val, found, default)
 
     implicit none
 
@@ -1801,8 +1861,9 @@
     character(kind=CDK,len=*),intent(in)             :: path  !! the path to the variable
     character(kind=CK,len=:),allocatable,intent(out) :: val   !! value
     logical(LK),intent(out),optional                 :: found !! if it was really found
+    character(kind=CK,len=*),intent(in),optional     :: default
 
-    call me%get(to_unicode(path), val, found)
+    call me%get(to_unicode(path), val, found, default)
 
     end subroutine wrap_json_file_get_string
 !*****************************************************************************************
@@ -1813,7 +1874,7 @@
 !
 !  Get a string vector from a JSON file.
 
-    subroutine json_file_get_string_vec(me, path, vec, found)
+    subroutine json_file_get_string_vec(me, path, vec, found, default)
 
     implicit none
 
@@ -1821,8 +1882,9 @@
     character(kind=CK,len=*),intent(in)                           :: path  !! the path to the variable
     character(kind=CK,len=*),dimension(:),allocatable,intent(out) :: vec   !! value vector
     logical(LK),intent(out),optional                              :: found !! if it was really found
+    character(kind=CK,len=*),dimension(:),intent(in),optional     :: default
 
-    call me%core%get(me%p, path, vec, found)
+    call me%core%get(me%p, path, vec, found, default)
 
     end subroutine json_file_get_string_vec
 !*****************************************************************************************
@@ -1831,7 +1893,7 @@
 !>
 !  Alternate version of [[json_file_get_string_vec]], where "path" is kind=CDK.
 
-    subroutine wrap_json_file_get_string_vec(me, path, vec, found)
+    subroutine wrap_json_file_get_string_vec(me, path, vec, found, default)
 
     implicit none
 
@@ -1839,8 +1901,9 @@
     character(kind=CDK,len=*),intent(in)                          :: path  !! the path to the variable
     character(kind=CK,len=*),dimension(:),allocatable,intent(out) :: vec   !! value vector
     logical(LK),intent(out),optional                              :: found !! if it was really found
+    character(kind=CK,len=*),dimension(:),intent(in),optional     :: default
 
-    call me%get(to_unicode(path), vec, found)
+    call me%get(to_unicode(path), vec, found, default)
 
     end subroutine wrap_json_file_get_string_vec
 !*****************************************************************************************
@@ -1852,7 +1915,7 @@
 !  Get an (allocatable length) string vector from a JSON file.
 !  This is just a wrapper for [[json_get_alloc_string_vec_by_path]].
 
-    subroutine json_file_get_alloc_string_vec(me, path, vec, ilen, found)
+    subroutine json_file_get_alloc_string_vec(me, path, vec, ilen, found, default, default_ilen)
 
     implicit none
 
@@ -1863,8 +1926,11 @@
                                                              !! of each character
                                                              !! string in the array
     logical(LK),intent(out),optional :: found
+    character(kind=CK,len=*),dimension(:),intent(in),optional :: default
+    integer(IK),dimension(:),intent(in),optional :: default_ilen !! the actual
+                                                                 !! length of `default`
 
-    call me%core%get(me%p, path, vec, ilen, found)
+    call me%core%get(me%p, path, vec, ilen, found, default, default_ilen)
 
     end subroutine json_file_get_alloc_string_vec
 !*****************************************************************************************
@@ -1874,7 +1940,7 @@
 !  Alternate version of [[json_file_get_alloc_string_vec]], where "path" is kind=CDK.
 !  This is just a wrapper for [[wrap_json_get_alloc_string_vec_by_path]].
 
-    subroutine wrap_json_file_get_alloc_string_vec(me, path, vec, ilen, found)
+    subroutine wrap_json_file_get_alloc_string_vec(me, path, vec, ilen, found, default, default_ilen)
 
     implicit none
 
@@ -1885,8 +1951,11 @@
                                                              !! of each character
                                                              !! string in the array
     logical(LK),intent(out),optional :: found
+    character(kind=CK,len=*),dimension(:),intent(in),optional :: default
+    integer(IK),dimension(:),intent(in),optional :: default_ilen !! the actual
+                                                                 !! length of `default`
 
-    call me%get(to_unicode(path), vec, ilen, found)
+    call me%get(to_unicode(path), vec, ilen, found, default, default_ilen)
 
     end subroutine wrap_json_file_get_alloc_string_vec
 !*****************************************************************************************
