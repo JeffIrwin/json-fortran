@@ -148,17 +148,17 @@
     
 
     <p>Initialize the <a href="../type/json_core.html">json_core</a> for this <a href="../type/json_file.html">json_file</a>.
-  This is just a wrapper for <a href="json_initialize.html">json_initialize</a>.</p>
+  This is just a wrapper for <a href="../proc/json_initialize.html">json_initialize</a>.</p>
 <div class="alert alert-info">
 <p class="alert-title h4">Note</p>
 <p>This does not destroy the data in the file.</p>
 </div>
 <div class="alert alert-info">
 <p class="alert-title h4">Note</p>
-<p><a href="initialize_json_core.html">initialize_json_core</a>, <a href="json_initialize.html">json_initialize</a>,
-      <a href="initialize_json_core_in_file.html">initialize_json_core_in_file</a>, <a href="initialize_json_file.html">initialize_json_file</a>,
-      <a href="initialize_json_file_v2.html">initialize_json_file_v2</a>, <a href="initialize_json_file_from_string.html">initialize_json_file_from_string</a>,
-      and <a href="initialize_json_file_from_string_v2.html">initialize_json_file_from_string_v2</a>
+<p><a href="../proc/initialize_json_core.html">initialize_json_core</a>, <a href="../proc/json_initialize.html">json_initialize</a>,
+      <a href="../proc/initialize_json_core_in_file.html">initialize_json_core_in_file</a>, <a href="../proc/initialize_json_file.html">initialize_json_file</a>,
+      <a href="../proc/initialize_json_file_v2.html">initialize_json_file_v2</a>, <a href="../proc/initialize_json_file_from_string.html">initialize_json_file_from_string</a>,
+      and <a href="../proc/initialize_json_file_from_string_v2.html">initialize_json_file_from_string_v2</a>
       all have a similar interface.</p>
 </div>
 
@@ -178,7 +178,7 @@
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-me~81"></span>
+              <span class="anchor" id="variable-me~6"></span>
               class(<a href='../type/json_file.html'>json_file</a>),
             </td>
 <td>intent(inout)</td>
@@ -193,7 +193,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-verbose~3"></span>
+              <span class="anchor" id="variable-verbose"></span>
               logical(kind=LK),
             </td>
 <td>intent(in),</td>
@@ -208,7 +208,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-compact_reals~3"></span>
+              <span class="anchor" id="variable-compact_reals"></span>
               logical(kind=LK),
             </td>
 <td>intent(in),</td>
@@ -223,7 +223,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-print_signs~3"></span>
+              <span class="anchor" id="variable-print_signs"></span>
               logical(kind=LK),
             </td>
 <td>intent(in),</td>
@@ -238,7 +238,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-real_format~3"></span>
+              <span class="anchor" id="variable-real_format"></span>
               character(kind=CDK, len=*),
             </td>
 <td>intent(in),</td>
@@ -253,7 +253,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-spaces_per_tab~4"></span>
+              <span class="anchor" id="variable-spaces_per_tab"></span>
               integer(kind=IK),
             </td>
 <td>intent(in),</td>
@@ -268,7 +268,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-strict_type_checking~4"></span>
+              <span class="anchor" id="variable-strict_type_checking"></span>
               logical(kind=LK),
             </td>
 <td>intent(in),</td>
@@ -285,7 +285,7 @@ conversions are done for the <code>get</code> routines
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-trailing_spaces_significant~4"></span>
+              <span class="anchor" id="variable-trailing_spaces_significant"></span>
               logical(kind=LK),
             </td>
 <td>intent(in),</td>
@@ -302,7 +302,7 @@ space to be considered significant.
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-case_sensitive_keys~4"></span>
+              <span class="anchor" id="variable-case_sensitive_keys"></span>
               logical(kind=LK),
             </td>
 <td>intent(in),</td>
@@ -318,7 +318,7 @@ case sensitive. (default is true)</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-no_whitespace~4"></span>
+              <span class="anchor" id="variable-no_whitespace"></span>
               logical(kind=LK),
             </td>
 <td>intent(in),</td>
@@ -335,7 +335,7 @@ spaces or linebreaks (default is false)</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-unescape_strings~3"></span>
+              <span class="anchor" id="variable-unescape_strings"></span>
               logical(kind=LK),
             </td>
 <td>intent(in),</td>
@@ -346,14 +346,14 @@ spaces or linebreaks (default is false)</p>
             <td><strong>unescape_strings</strong></td>
             <td>
                 <p>If false, then the raw escaped
-string is returned from <a href="json_get_string.html">json_get_string</a>
+string is returned from <a href="../proc/json_get_string.html">json_get_string</a>
 and similar routines. If true [default],
 then the string is returned unescaped.</p>
             </td>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-comment_char~4"></span>
+              <span class="anchor" id="variable-comment_char"></span>
               character(kind=CK, len=*),
             </td>
 <td>intent(in),</td>
@@ -373,7 +373,7 @@ ignoring of comments. (Default is <code>/!#</code>).</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-path_mode~4"></span>
+              <span class="anchor" id="variable-path_mode"></span>
               integer(kind=IK),
             </td>
 <td>intent(in),</td>
@@ -386,17 +386,17 @@ ignoring of comments. (Default is <code>/!#</code>).</p>
                 <p>How the path strings are interpreted in the
 <code>get_by_path</code> routines:</p>
 <ul>
-<li>1 : Default mode (see <a href="json_get_by_path_default.html">json_get_by_path_default</a>)</li>
+<li>1 : Default mode (see <a href="../proc/json_get_by_path_default.html">json_get_by_path_default</a>)</li>
 <li>2 : as RFC 6901 &ldquo;<abbr title="JavaScript Object Notation: A human friendly syntax for storing and exchanging data">JSON</abbr> Pointer&rdquo; paths
-  (see <a href="json_get_by_path_rfc6901.html">json_get_by_path_rfc6901</a>)</li>
+  (see <a href="../proc/json_get_by_path_rfc6901.html">json_get_by_path_rfc6901</a>)</li>
 <li>3 : JSONPath &ldquo;bracket-notation&rdquo;
-  see <a href="json_get_by_path_jsonpath_bracket.html">json_get_by_path_jsonpath_bracket</a>)</li>
+  see <a href="../proc/json_get_by_path_jsonpath_bracket.html">json_get_by_path_jsonpath_bracket</a>)</li>
 </ul>
             </td>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-path_separator~4"></span>
+              <span class="anchor" id="variable-path_separator"></span>
               character(kind=CK, len=1),
             </td>
 <td>intent(in),</td>
@@ -417,7 +417,7 @@ then this is ignored.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-compress_vectors~4"></span>
+              <span class="anchor" id="variable-compress_vectors"></span>
               logical(kind=LK),
             </td>
 <td>intent(in),</td>
@@ -437,7 +437,7 @@ override this option if necessary].
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-allow_duplicate_keys~4"></span>
+              <span class="anchor" id="variable-allow_duplicate_keys"></span>
               logical(kind=LK),
             </td>
 <td>intent(in),</td>
@@ -452,14 +452,14 @@ override this option if necessary].
   are done to check for duplicate keys.</li>
 <li>If False, then after parsing, if any duplicate
   keys are found, an error is thrown. A call to
-  <a href="json_value_validate.html">json_value_validate</a> will also check for
+  <a href="../proc/json_value_validate.html">json_value_validate</a> will also check for
   duplicates.</li>
 </ul>
             </td>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-escape_solidus~5"></span>
+              <span class="anchor" id="variable-escape_solidus"></span>
               logical(kind=LK),
             </td>
 <td>intent(in),</td>
@@ -481,7 +481,7 @@ all cases).</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-stop_on_error~5"></span>
+              <span class="anchor" id="variable-stop_on_error"></span>
               logical(kind=LK),
             </td>
 <td>intent(in),</td>
@@ -497,7 +497,7 @@ all cases).</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-null_to_real_mode~4"></span>
+              <span class="anchor" id="variable-null_to_real_mode"></span>
               integer(kind=IK),
             </td>
 <td>intent(in),</td>
@@ -520,7 +520,7 @@ all cases).</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-non_normal_mode~3"></span>
+              <span class="anchor" id="variable-non_normal_mode"></span>
               integer(kind=IK),
             </td>
 <td>intent(in),</td>
@@ -541,7 +541,7 @@ all cases).</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-use_quiet_nan~5"></span>
+              <span class="anchor" id="variable-use_quiet_nan"></span>
               logical(kind=LK),
             </td>
 <td>intent(in),</td>
@@ -553,7 +553,7 @@ all cases).</p>
             <td>
                 <ul>
 <li>If true [default], <code>null_to_real_mode=2</code>
-  and <a href="string_to_real.html">string_to_real</a> will use
+  and <a href="../proc/string_to_real.html">string_to_real</a> will use
   <code>ieee_quiet_nan</code> for NaN values.</li>
 <li>If false,
   <code>ieee_signaling_nan</code> will be used.</li>
@@ -562,7 +562,7 @@ all cases).</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-strict_integer_type_checking~4"></span>
+              <span class="anchor" id="variable-strict_integer_type_checking"></span>
               logical(kind=LK),
             </td>
 <td>intent(in),</td>
@@ -859,18 +859,18 @@ large graphs.</div>
 <polygon fill="none" stroke="black" points="1387,-66 1088,-66 1088,-42 1387,-42 1387,-66"/>
 <text text-anchor="middle" x="1237.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50">json_file_module::json_file%initialize_json_core_in_file</text>
 </g>
-<!-- none~initialize~2 -->
+<!-- none~initialize -->
 <g id="proc~~initialize_json_core_in_file~~CalledByGraph_node2" class="node">
-<title>none~initialize~2</title>
-<g id="a_proc~~initialize_json_core_in_file~~CalledByGraph_node2"><a xlink:href="../type/json_file.html#boundprocedure-initialize~2" xlink:title="json_file_module::json_file%initialize">
+<title>none~initialize</title>
+<g id="a_proc~~initialize_json_core_in_file~~CalledByGraph_node2"><a xlink:href="../type/json_file.html#boundprocedure-initialize" xlink:title="json_file_module::json_file%initialize">
 <polygon fill="#a7506f" stroke="#a7506f" points="1052,-66 845,-66 845,-42 1052,-42 1052,-66"/>
 <text text-anchor="middle" x="948.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">json_file_module::json_file%initialize</text>
 </a>
 </g>
 </g>
-<!-- none~initialize~2&#45;&gt;proc~initialize_json_core_in_file -->
+<!-- none~initialize&#45;&gt;proc~initialize_json_core_in_file -->
 <g id="proc~~initialize_json_core_in_file~~CalledByGraph_edge1" class="edge">
-<title>none~initialize~2&#45;&gt;proc~initialize_json_core_in_file</title>
+<title>none~initialize&#45;&gt;proc~initialize_json_core_in_file</title>
 <path fill="none" stroke="#255000" d="M1052.3,-54C1060.63,-54 1069.15,-54 1077.75,-54"/>
 <polygon fill="#255000" stroke="#255000" points="1077.86,-57.5 1087.86,-54 1077.86,-50.5 1077.86,-57.5"/>
 </g>
@@ -883,9 +883,9 @@ large graphs.</div>
 </a>
 </g>
 </g>
-<!-- proc~initialize_json_file&#45;&gt;none~initialize~2 -->
+<!-- proc~initialize_json_file&#45;&gt;none~initialize -->
 <g id="proc~~initialize_json_core_in_file~~CalledByGraph_edge2" class="edge">
-<title>proc~initialize_json_file&#45;&gt;none~initialize~2</title>
+<title>proc~initialize_json_file&#45;&gt;none~initialize</title>
 <path fill="none" stroke="#255000" d="M439.55,-93.14C534.75,-91.56 681.91,-87.17 809,-75 828.28,-73.15 848.96,-70.43 868.31,-67.54"/>
 <polygon fill="#255000" stroke="#255000" points="868.93,-70.99 878.29,-66.02 867.88,-64.07 868.93,-70.99"/>
 </g>
@@ -898,9 +898,9 @@ large graphs.</div>
 </a>
 </g>
 </g>
-<!-- proc~initialize_json_file_from_string&#45;&gt;none~initialize~2 -->
+<!-- proc~initialize_json_file_from_string&#45;&gt;none~initialize -->
 <g id="proc~~initialize_json_core_in_file~~CalledByGraph_edge3" class="edge">
-<title>proc~initialize_json_file_from_string&#45;&gt;none~initialize~2</title>
+<title>proc~initialize_json_file_from_string&#45;&gt;none~initialize</title>
 <path fill="none" stroke="#255000" d="M800.53,-54C811.87,-54 823.28,-54 834.44,-54"/>
 <polygon fill="#255000" stroke="#255000" points="834.62,-57.5 844.62,-54 834.62,-50.5 834.62,-57.5"/>
 </g>
@@ -913,9 +913,9 @@ large graphs.</div>
 </a>
 </g>
 </g>
-<!-- proc~json_file_move_pointer&#45;&gt;none~initialize~2 -->
+<!-- proc~json_file_move_pointer&#45;&gt;none~initialize -->
 <g id="proc~~initialize_json_core_in_file~~CalledByGraph_edge4" class="edge">
-<title>proc~json_file_move_pointer&#45;&gt;none~initialize~2</title>
+<title>proc~json_file_move_pointer&#45;&gt;none~initialize</title>
 <path fill="none" stroke="#255000" d="M748.69,-24.01C768.43,-26.94 789.47,-30.07 809,-33 824.93,-35.39 841.9,-37.95 858.29,-40.43"/>
 <polygon fill="#255000" stroke="#255000" points="857.99,-43.93 868.41,-41.96 859.04,-37.01 857.99,-43.93"/>
 </g>
@@ -1095,7 +1095,7 @@ large graphs.</div>
             <p class="text-end">
               Documentation generated by
               <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2024-01-06 05:04              </p>
+ on 2024-03-07 05:04              </p>
           </div>
         </div>
         <br>
