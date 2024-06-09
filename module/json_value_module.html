@@ -79,7 +79,7 @@
 
             <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
               <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
-                 title="77.2% of total for modules and submodules.">5702 statements</a>
+                 title="77.2% of total for modules and submodules.">5721 statements</a>
             </li>
 
             <li class="list-inline-item" id="source-file">
@@ -433,11 +433,11 @@
         <ul class="list-group list-group-flush">
             <li class="list-group-item">
               <ul class="list-inline">
-                  <li class="list-inline-item"><a href='json_parameters.html'>json_parameters</a></li>
-                  <li class="list-inline-item"><a href='http://fortranwiki.org/fortran/show/iso_fortran_env'>iso_fortran_env</a></li>
-                  <li class="list-inline-item"><a href='json_kinds.html'>json_kinds</a></li>
-                  <li class="list-inline-item"><a href='http://fortranwiki.org/fortran/show/ieee_arithmetic'>ieee_arithmetic</a></li>
                   <li class="list-inline-item"><a href='json_string_utilities.html'>json_string_utilities</a></li>
+                  <li class="list-inline-item"><a href='http://fortranwiki.org/fortran/show/ieee_arithmetic'>ieee_arithmetic</a></li>
+                  <li class="list-inline-item"><a href='json_kinds.html'>json_kinds</a></li>
+                  <li class="list-inline-item"><a href='http://fortranwiki.org/fortran/show/iso_fortran_env'>iso_fortran_env</a></li>
+                  <li class="list-inline-item"><a href='json_parameters.html'>json_parameters</a></li>
               </ul>
             </li>
             <li class="list-group-item">
@@ -886,7 +886,7 @@ be read faster.</p>
     <ul class="list-group">
           <li class="list-group-item">
                 <h3>
-    private  function <a href='../proc/initialize_json_core.html'>initialize_json_core</a>(verbose, compact_reals, print_signs, real_format, spaces_per_tab, strict_type_checking, trailing_spaces_significant, case_sensitive_keys, no_whitespace, unescape_strings, comment_char, path_mode, path_separator, compress_vectors, allow_duplicate_keys, escape_solidus, stop_on_error, null_to_real_mode, non_normal_mode, use_quiet_nan, strict_integer_type_checking) result(json_core_object)  
+    private  function <a href='../proc/initialize_json_core.html'>initialize_json_core</a>(verbose, compact_reals, print_signs, real_format, spaces_per_tab, strict_type_checking, trailing_spaces_significant, case_sensitive_keys, no_whitespace, unescape_strings, comment_char, path_mode, path_separator, compress_vectors, allow_duplicate_keys, escape_solidus, stop_on_error, null_to_real_mode, non_normal_mode, use_quiet_nan, strict_integer_type_checking, allow_trailing_comma) result(json_core_object)  
 
     </h3>
         <dl class="dl-horizontal">
@@ -1168,7 +1168,7 @@ override this option if necessary].
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-escape_solidus~7"></span>
+              <span class="anchor" id="variable-escape_solidus~6"></span>
               logical(kind=LK),
             </td>
 <td>intent(in),</td>
@@ -1180,7 +1180,7 @@ override this option if necessary].
             <td>
 <p>Note that this option does not affect parsing
 (both escaped and unescaped are still valid in
-all cases).</p><a href="../proc/initialize_json_core.html#variable-escape_solidus~7" class="pull-right"><emph>Read more&hellip;</emph></a>
+all cases).</p><a href="../proc/initialize_json_core.html#variable-escape_solidus~6" class="pull-right"><emph>Read more&hellip;</emph></a>
             </td>
         </tr>
         <tr>
@@ -1232,7 +1232,7 @@ all cases).</p><a href="../proc/initialize_json_core.html#variable-escape_solidu
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-use_quiet_nan~7"></span>
+              <span class="anchor" id="variable-use_quiet_nan~6"></span>
               logical(kind=LK),
             </td>
 <td>intent(in),</td>
@@ -1242,7 +1242,7 @@ all cases).</p><a href="../proc/initialize_json_core.html#variable-escape_solidu
             <td>::</td>
             <td><strong>use_quiet_nan</strong></td>
             <td>
-<a href="../proc/initialize_json_core.html#variable-use_quiet_nan~7" class="pull-right"><emph>Read more&hellip;</emph></a>
+<a href="../proc/initialize_json_core.html#variable-use_quiet_nan~6" class="pull-right"><emph>Read more&hellip;</emph></a>
             </td>
         </tr>
         <tr>
@@ -1258,6 +1258,22 @@ all cases).</p><a href="../proc/initialize_json_core.html#variable-escape_solidu
             <td><strong>strict_integer_type_checking</strong></td>
             <td>
 <p>(default is true)</p><a href="../proc/initialize_json_core.html#variable-strict_integer_type_checking~6" class="pull-right"><emph>Read more&hellip;</emph></a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-allow_trailing_comma~6"></span>
+              logical(kind=LK),
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>allow_trailing_comma</strong></td>
+            <td>
+<p>Allow a single trailing comma in arrays and objects.
+(default is true)</p>
             </td>
         </tr>
     </tbody>
@@ -1333,7 +1349,7 @@ all cases).</p><a href="../proc/initialize_json_core.html#variable-escape_solidu
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-i~7"></span>
+              <span class="anchor" id="variable-i"></span>
               integer(kind=IK),
             </td>
 <td>intent(in)</td>
@@ -1517,6 +1533,23 @@ will also check for duplicates. If True
         </tr>
         <tr>
             <td>
+              <span class="anchor" id="variable-allow_trailing_comma~5"></span>
+              logical(kind=LK),
+            </td>
+              <td>private</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>allow_trailing_comma</strong></td>
+<td> =</td>
+                <td>.true.</td>
+            <td>
+<p>Allow a single trailing comma in arrays and objects.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
               <span class="anchor" id="variable-case_sensitive_keys~5"></span>
               logical(kind=LK),
             </td>
@@ -1590,7 +1623,7 @@ Default is <code>CK_'/!#'</code>.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-compact_real~2"></span>
+              <span class="anchor" id="variable-compact_real"></span>
               logical(kind=LK),
             </td>
               <td>private</td>
@@ -1648,7 +1681,7 @@ this variable is not allocated.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-escape_solidus~6"></span>
+              <span class="anchor" id="variable-escape_solidus~5"></span>
               logical(kind=LK),
             </td>
               <td>private</td>
@@ -1725,7 +1758,7 @@ when <code>use_unformatted_stream=True</code></p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-ipos~2"></span>
+              <span class="anchor" id="variable-ipos"></span>
               integer(kind=IK),
             </td>
               <td>private</td>
@@ -1797,7 +1830,7 @@ printed on one line.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-non_normals_to_null~2"></span>
+              <span class="anchor" id="variable-non_normals_to_null"></span>
               logical(kind=LK),
             </td>
               <td>private</td>
@@ -1810,7 +1843,7 @@ printed on one line.</p>
                 <td>.false.</td>
             <td>
 <p>How to serialize NaN, Infinity,
-and -Infinity real values:</p><a href="../type/json_core.html#variable-non_normals_to_null~2" class="pull-right"><emph>Read more&hellip;</emph></a>
+and -Infinity real values:</p><a href="../type/json_core.html#variable-non_normals_to_null" class="pull-right"><emph>Read more&hellip;</emph></a>
             </td>
         </tr>
         <tr>
@@ -1907,7 +1940,7 @@ lines in file</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-real_fmt~2"></span>
+              <span class="anchor" id="variable-real_fmt"></span>
               character(kind=CDK, len=:),
             </td>
               <td>private,</td>
@@ -2040,7 +2073,7 @@ then the string is returned unescaped.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-use_quiet_nan~6"></span>
+              <span class="anchor" id="variable-use_quiet_nan~5"></span>
               logical(kind=LK),
             </td>
               <td>private</td>
@@ -2074,7 +2107,7 @@ and <a href="../proc/string_to_real.html">string_to_real</a> will use
                     
                     function
                     <strong><a href='/home/runner/work/json-fortran/json-fortran/doc/proc/initialize_json_core.html'>initialize_json_core</a></strong>
-                    (verbose, compact_reals, print_signs, real_format, spaces_per_tab, strict_type_checking, trailing_spaces_significant, case_sensitive_keys, no_whitespace, unescape_strings, comment_char, path_mode, path_separator, compress_vectors, allow_duplicate_keys, escape_solidus, stop_on_error, null_to_real_mode, non_normal_mode, use_quiet_nan, strict_integer_type_checking)
+                    (verbose, compact_reals, print_signs, real_format, spaces_per_tab, strict_type_checking, trailing_spaces_significant, case_sensitive_keys, no_whitespace, unescape_strings, comment_char, path_mode, path_separator, compress_vectors, allow_duplicate_keys, escape_solidus, stop_on_error, null_to_real_mode, non_normal_mode, use_quiet_nan, strict_integer_type_checking, allow_trailing_comma)
                   </td>
                   <td><p>Function constructor for a <a href="../type/json_core.html">json_core</a>.
   This is just a wrapper for <a href="../proc/json_initialize.html">json_initialize</a>.</p><a href="../proc/initialize_json_core.html" class="pull-right"><emph>Read more&hellip;</emph></a></td>
@@ -3583,7 +3616,7 @@ if it has been constructed externally.</p></td>
         <section>
           <h2>Functions</h2>
               <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-initialize_json_core"></span> <h3>private  function <a href='../proc/initialize_json_core.html'>initialize_json_core</a>(verbose, compact_reals, print_signs, real_format, spaces_per_tab, strict_type_checking, trailing_spaces_significant, case_sensitive_keys, no_whitespace, unescape_strings, comment_char, path_mode, path_separator, compress_vectors, allow_duplicate_keys, escape_solidus, stop_on_error, null_to_real_mode, non_normal_mode, use_quiet_nan, strict_integer_type_checking) result(json_core_object)  
+    <div class="card-header codesum"><span class="anchor" id="proc-initialize_json_core"></span> <h3>private  function <a href='../proc/initialize_json_core.html'>initialize_json_core</a>(verbose, compact_reals, print_signs, real_format, spaces_per_tab, strict_type_checking, trailing_spaces_significant, case_sensitive_keys, no_whitespace, unescape_strings, comment_char, path_mode, path_separator, compress_vectors, allow_duplicate_keys, escape_solidus, stop_on_error, null_to_real_mode, non_normal_mode, use_quiet_nan, strict_integer_type_checking, allow_trailing_comma) result(json_core_object)  
 </h3></div>
     <div class="card-body">
               <dl class="dl-horizontal">
@@ -3859,7 +3892,7 @@ override this option if necessary].
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-escape_solidus~7"></span>
+              <span class="anchor" id="variable-escape_solidus~6"></span>
               logical(kind=LK),
             </td>
 <td>intent(in),</td>
@@ -3871,7 +3904,7 @@ override this option if necessary].
             <td>
 <p>Note that this option does not affect parsing
 (both escaped and unescaped are still valid in
-all cases).</p><a href="../proc/initialize_json_core.html#variable-escape_solidus~7" class="pull-right"><emph>Read more&hellip;</emph></a>
+all cases).</p><a href="../proc/initialize_json_core.html#variable-escape_solidus~6" class="pull-right"><emph>Read more&hellip;</emph></a>
             </td>
         </tr>
         <tr>
@@ -3923,7 +3956,7 @@ all cases).</p><a href="../proc/initialize_json_core.html#variable-escape_solidu
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-use_quiet_nan~7"></span>
+              <span class="anchor" id="variable-use_quiet_nan~6"></span>
               logical(kind=LK),
             </td>
 <td>intent(in),</td>
@@ -3933,7 +3966,7 @@ all cases).</p><a href="../proc/initialize_json_core.html#variable-escape_solidu
             <td>::</td>
             <td><strong>use_quiet_nan</strong></td>
             <td>
-<a href="../proc/initialize_json_core.html#variable-use_quiet_nan~7" class="pull-right"><emph>Read more&hellip;</emph></a>
+<a href="../proc/initialize_json_core.html#variable-use_quiet_nan~6" class="pull-right"><emph>Read more&hellip;</emph></a>
             </td>
         </tr>
         <tr>
@@ -3949,6 +3982,22 @@ all cases).</p><a href="../proc/initialize_json_core.html#variable-escape_solidu
             <td><strong>strict_integer_type_checking</strong></td>
             <td>
 <p>(default is true)</p><a href="../proc/initialize_json_core.html#variable-strict_integer_type_checking~6" class="pull-right"><emph>Read more&hellip;</emph></a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-allow_trailing_comma~6"></span>
+              logical(kind=LK),
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>allow_trailing_comma</strong></td>
+            <td>
+<p>Allow a single trailing comma in arrays and objects.
+(default is true)</p>
             </td>
         </tr>
     </tbody>
@@ -4489,7 +4538,7 @@ lexically equal</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-str~28"></span>
+              <span class="anchor" id="variable-str~15"></span>
               character(kind=CK, len=*),
             </td>
 <td>intent(in)</td>
@@ -4549,7 +4598,7 @@ lexically equal</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-str~27"></span>
+              <span class="anchor" id="variable-str~14"></span>
               character(kind=CK, len=*),
             </td>
 <td>intent(in)</td>
@@ -4705,7 +4754,7 @@ file or string.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-str~32"></span>
+              <span class="anchor" id="variable-str~19"></span>
               character(kind=CK, len=*),
             </td>
 <td>intent(in)</td>
@@ -6640,7 +6689,7 @@ This is the STREAM version (see also <a href="../proc/get_current_line_from_file
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-ilen~9"></span>
+              <span class="anchor" id="variable-ilen~8"></span>
               integer(kind=IK),
             </td>
 <td>intent(in),</td>
@@ -6803,7 +6852,7 @@ for each element.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-ilen~12"></span>
+              <span class="anchor" id="variable-ilen~11"></span>
               integer(kind=IK),
             </td>
 <td>intent(in),</td>
@@ -6966,7 +7015,7 @@ for each element.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-ilen~11"></span>
+              <span class="anchor" id="variable-ilen~10"></span>
               integer(kind=IK),
             </td>
 <td>intent(in),</td>
@@ -7290,7 +7339,7 @@ duplicate was found)</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-status_ok~4"></span>
+              <span class="anchor" id="variable-status_ok~2"></span>
               logical(kind=LK),
             </td>
 <td>intent(out),</td>
@@ -7638,7 +7687,7 @@ specify by <code>path</code></p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-ilen~15"></span>
+              <span class="anchor" id="variable-ilen~14"></span>
               integer(kind=IK),
             </td>
 <td>intent(out),</td>
@@ -7740,7 +7789,7 @@ string in the array</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-ilen~16"></span>
+              <span class="anchor" id="variable-ilen~15"></span>
               integer(kind=IK),
             </td>
 <td>intent(out),</td>
@@ -10994,7 +11043,7 @@ If there is no tail, then a <code>null()</code> pointer is returned.</p>
   </div>
 
               <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-json_initialize"></span> <h3>private  subroutine <a href='../proc/json_initialize.html'>json_initialize</a>(me, verbose, compact_reals, print_signs, real_format, spaces_per_tab, strict_type_checking, trailing_spaces_significant, case_sensitive_keys, no_whitespace, unescape_strings, comment_char, path_mode, path_separator, compress_vectors, allow_duplicate_keys, escape_solidus, stop_on_error, null_to_real_mode, non_normal_mode, use_quiet_nan, strict_integer_type_checking)  
+    <div class="card-header codesum"><span class="anchor" id="proc-json_initialize"></span> <h3>private  subroutine <a href='../proc/json_initialize.html'>json_initialize</a>(me, verbose, compact_reals, print_signs, real_format, spaces_per_tab, strict_type_checking, trailing_spaces_significant, case_sensitive_keys, no_whitespace, unescape_strings, comment_char, path_mode, path_separator, compress_vectors, allow_duplicate_keys, escape_solidus, stop_on_error, null_to_real_mode, non_normal_mode, use_quiet_nan, strict_integer_type_checking, allow_trailing_comma)  
 </h3></div>
     <div class="card-body">
               <dl class="dl-horizontal">
@@ -11284,7 +11333,7 @@ override this option if necessary].
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-escape_solidus~8"></span>
+              <span class="anchor" id="variable-escape_solidus~7"></span>
               logical(kind=LK),
             </td>
 <td>intent(in),</td>
@@ -11296,7 +11345,7 @@ override this option if necessary].
             <td>
 <p>Note that this option does not affect parsing
 (both escaped and unescaped are still valid in
-all cases).</p><a href="../proc/json_initialize.html#variable-escape_solidus~8" class="pull-right"><emph>Read more&hellip;</emph></a>
+all cases).</p><a href="../proc/json_initialize.html#variable-escape_solidus~7" class="pull-right"><emph>Read more&hellip;</emph></a>
             </td>
         </tr>
         <tr>
@@ -11348,7 +11397,7 @@ all cases).</p><a href="../proc/json_initialize.html#variable-escape_solidus~8" 
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-use_quiet_nan~8"></span>
+              <span class="anchor" id="variable-use_quiet_nan~7"></span>
               logical(kind=LK),
             </td>
 <td>intent(in),</td>
@@ -11358,7 +11407,7 @@ all cases).</p><a href="../proc/json_initialize.html#variable-escape_solidus~8" 
             <td>::</td>
             <td><strong>use_quiet_nan</strong></td>
             <td>
-<a href="../proc/json_initialize.html#variable-use_quiet_nan~8" class="pull-right"><emph>Read more&hellip;</emph></a>
+<a href="../proc/json_initialize.html#variable-use_quiet_nan~7" class="pull-right"><emph>Read more&hellip;</emph></a>
             </td>
         </tr>
         <tr>
@@ -11374,6 +11423,22 @@ all cases).</p><a href="../proc/json_initialize.html#variable-escape_solidus~8" 
             <td><strong>strict_integer_type_checking</strong></td>
             <td>
 <p>(default is true)</p><a href="../proc/json_initialize.html#variable-strict_integer_type_checking~7" class="pull-right"><emph>Read more&hellip;</emph></a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-allow_trailing_comma~7"></span>
+              logical(kind=LK),
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>allow_trailing_comma</strong></td>
+            <td>
+<p>Allow a single trailing comma in arrays and objects.
+(default is true)</p>
             </td>
         </tr>
     </tbody>
@@ -11737,7 +11802,7 @@ in the file.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-str~30"></span>
+              <span class="anchor" id="variable-str~17"></span>
               character(kind=CK, len=*),
             </td>
 <td>intent(in)</td>
@@ -11893,7 +11958,7 @@ data (only used if <code>unit=0</code>)</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-str~29"></span>
+              <span class="anchor" id="variable-str~16"></span>
               character(kind=CK, len=*),
             </td>
 <td>intent(in)</td>
@@ -12572,7 +12637,7 @@ already have been opened, can&rsquo;t be -1).</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-ilen~8"></span>
+              <span class="anchor" id="variable-ilen~7"></span>
               integer(kind=IK),
             </td>
 <td>intent(out),</td>
@@ -16582,7 +16647,7 @@ file is assumed to be open)</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-str~25"></span>
+              <span class="anchor" id="variable-str~12"></span>
               character(kind=CK, len=:),
             </td>
 <td>intent(inout),</td>
@@ -17198,7 +17263,7 @@ a memory leak.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-str~24"></span>
+              <span class="anchor" id="variable-str~11"></span>
               character(kind=CK, len=:),
             </td>
 <td>intent(out),</td>
@@ -17361,7 +17426,7 @@ a description of the problem</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-str~36"></span>
+              <span class="anchor" id="variable-str~23"></span>
               character(kind=CK, len=*),
             </td>
 <td>intent(in)</td>
@@ -17446,7 +17511,7 @@ a description of the problem</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-str~38"></span>
+              <span class="anchor" id="variable-str~25"></span>
               character(kind=CK, len=*),
             </td>
 <td>intent(in)</td>
@@ -17537,7 +17602,7 @@ a description of the problem</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-str~39"></span>
+              <span class="anchor" id="variable-str~26"></span>
               character(kind=CK, len=*),
             </td>
 <td>intent(in)</td>
@@ -17573,7 +17638,7 @@ a description of the problem</p>
   </div>
 
               <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-parse_object"></span> <h3>private recursive subroutine <a href='../proc/parse_object.html'>parse_object</a>(json, unit, str, parent)  
+    <div class="card-header codesum"><span class="anchor" id="proc-parse_object"></span> <h3>private recursive subroutine <a href='../proc/parse_object.html'>parse_object</a>(json, unit, str, parent, expecting_next_element)  
 </h3></div>
     <div class="card-body">
           
@@ -17622,7 +17687,7 @@ a description of the problem</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-str~35"></span>
+              <span class="anchor" id="variable-str~22"></span>
               character(kind=CK, len=*),
             </td>
 <td>intent(in)</td>
@@ -17648,6 +17713,23 @@ a description of the problem</p>
             <td><strong>parent</strong></td>
             <td>
 <p>the parsed object will be added as a child of this</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-expecting_next_element"></span>
+              logical(kind=LK),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>expecting_next_element</strong></td>
+            <td>
+<p>if true, this object is preceeded by a comma, so
+we expect a valid object to exist. used to check
+for trailing delimiters.</p>
             </td>
         </tr>
     </tbody>
@@ -17708,7 +17790,7 @@ parsing from a file)</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-str~37"></span>
+              <span class="anchor" id="variable-str~24"></span>
               character(kind=CK, len=*),
             </td>
 <td>intent(in)</td>
@@ -17795,7 +17877,7 @@ if necessary)</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-str~33"></span>
+              <span class="anchor" id="variable-str~20"></span>
               character(kind=CK, len=*),
             </td>
 <td>intent(in)</td>
@@ -17882,7 +17964,7 @@ from a file)</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-str~40"></span>
+              <span class="anchor" id="variable-str~27"></span>
               character(kind=CK, len=*),
             </td>
 <td>intent(in)</td>
@@ -17999,7 +18081,7 @@ been reached.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-c~13"></span>
+              <span class="anchor" id="variable-c~11"></span>
               character(kind=CK, len=1),
             </td>
 <td>intent(in)</td>
@@ -19917,7 +19999,7 @@ been reached.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-ilen~10"></span>
+              <span class="anchor" id="variable-ilen~9"></span>
               integer(kind=IK),
             </td>
 <td>intent(in),</td>
@@ -20168,7 +20250,7 @@ specify by <code>path</code></p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-ilen~17"></span>
+              <span class="anchor" id="variable-ilen~16"></span>
               integer(kind=IK),
             </td>
 <td>intent(out),</td>
@@ -22048,7 +22130,7 @@ cols if using row-major order)</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-str~31"></span>
+              <span class="anchor" id="variable-str~18"></span>
               character(kind=CDK, len=*),
             </td>
 <td>intent(in)</td>
@@ -24720,7 +24802,7 @@ with actual character string arguments for <code>name</code> and <code>val</code
             <p class="text-end">
               Documentation generated by
               <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2024-06-03 04:03              </p>
+ on 2024-06-09 04:04              </p>
           </div>
         </div>
         <br>

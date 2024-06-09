@@ -79,7 +79,7 @@
 
             <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
               <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
-                 title="15.3% of total for modules and submodules.">1126 statements</a>
+                 title="15.3% of total for modules and submodules.">1130 statements</a>
             </li>
 
             <li class="list-inline-item" id="source-file">
@@ -299,11 +299,11 @@
         <ul class="list-group list-group-flush">
             <li class="list-group-item">
               <ul class="list-inline">
-                  <li class="list-inline-item"><a href='json_parameters.html'>json_parameters</a></li>
-                  <li class="list-inline-item"><a href='http://fortranwiki.org/fortran/show/iso_fortran_env'>iso_fortran_env</a></li>
+                  <li class="list-inline-item"><a href='json_string_utilities.html'>json_string_utilities</a></li>
                   <li class="list-inline-item"><a href='json_value_module.html'>json_value_module</a></li>
                   <li class="list-inline-item"><a href='json_kinds.html'>json_kinds</a></li>
-                  <li class="list-inline-item"><a href='json_string_utilities.html'>json_string_utilities</a></li>
+                  <li class="list-inline-item"><a href='http://fortranwiki.org/fortran/show/iso_fortran_env'>iso_fortran_env</a></li>
+                  <li class="list-inline-item"><a href='json_parameters.html'>json_parameters</a></li>
               </ul>
             </li>
             <li class="list-group-item">
@@ -711,7 +711,7 @@ large graphs.</div>
     <ul class="list-group">
           <li class="list-group-item">
                 <h3>
-    private  function <a href='../proc/initialize_json_file.html'>initialize_json_file</a>(p, verbose, compact_reals, print_signs, real_format, spaces_per_tab, strict_type_checking, trailing_spaces_significant, case_sensitive_keys, no_whitespace, unescape_strings, comment_char, path_mode, path_separator, compress_vectors, allow_duplicate_keys, escape_solidus, stop_on_error, null_to_real_mode, non_normal_mode, use_quiet_nan, strict_integer_type_checking) result(file_object)  
+    private  function <a href='../proc/initialize_json_file.html'>initialize_json_file</a>(p, verbose, compact_reals, print_signs, real_format, spaces_per_tab, strict_type_checking, trailing_spaces_significant, case_sensitive_keys, no_whitespace, unescape_strings, comment_char, path_mode, path_separator, compress_vectors, allow_duplicate_keys, escape_solidus, stop_on_error, null_to_real_mode, non_normal_mode, use_quiet_nan, strict_integer_type_checking, allow_trailing_comma) result(file_object)  
 
     </h3>
         <dl class="dl-horizontal">
@@ -1104,6 +1104,22 @@ all cases).</p><a href="../proc/initialize_json_file.html#variable-escape_solidu
 <p>(default is true)</p><a href="../proc/initialize_json_file.html#variable-strict_integer_type_checking~2" class="pull-right"><emph>Read more&hellip;</emph></a>
             </td>
         </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-allow_trailing_comma~2"></span>
+              logical(kind=LK),
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>allow_trailing_comma</strong></td>
+            <td>
+<p>Allow a single trailing comma in arrays and objects.
+(default is true)</p>
+            </td>
+        </tr>
     </tbody>
   </table>
 
@@ -1180,7 +1196,7 @@ as a <a href="../type/json_file.html">json_file</a> object.</p>
           </li>
           <li class="list-group-item">
                 <h3>
-    private  function <a href='../proc/initialize_json_file_from_string.html'>initialize_json_file_from_string</a>(str, verbose, compact_reals, print_signs, real_format, spaces_per_tab, strict_type_checking, trailing_spaces_significant, case_sensitive_keys, no_whitespace, unescape_strings, comment_char, path_mode, path_separator, compress_vectors, allow_duplicate_keys, escape_solidus, stop_on_error, null_to_real_mode, non_normal_mode, use_quiet_nan, strict_integer_type_checking) result(file_object)  
+    private  function <a href='../proc/initialize_json_file_from_string.html'>initialize_json_file_from_string</a>(str, verbose, compact_reals, print_signs, real_format, spaces_per_tab, strict_type_checking, trailing_spaces_significant, case_sensitive_keys, no_whitespace, unescape_strings, comment_char, path_mode, path_separator, compress_vectors, allow_duplicate_keys, escape_solidus, stop_on_error, null_to_real_mode, non_normal_mode, use_quiet_nan, strict_integer_type_checking, allow_trailing_comma) result(file_object)  
 
     </h3>
         <dl class="dl-horizontal">
@@ -1576,6 +1592,22 @@ all cases).</p><a href="../proc/initialize_json_file_from_string.html#variable-e
 <p>(default is true)</p><a href="../proc/initialize_json_file_from_string.html#variable-strict_integer_type_checking~3" class="pull-right"><emph>Read more&hellip;</emph></a>
             </td>
         </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-allow_trailing_comma~3"></span>
+              logical(kind=LK),
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>allow_trailing_comma</strong></td>
+            <td>
+<p>Allow a single trailing comma in arrays and objects.
+(default is true)</p>
+            </td>
+        </tr>
     </tbody>
   </table>
 
@@ -1588,7 +1620,7 @@ all cases).</p><a href="../proc/initialize_json_file_from_string.html#variable-e
           </li>
           <li class="list-group-item">
                 <h3>
-    private  function <a href='../proc/wrap_initialize_json_file_from_string.html'>wrap_initialize_json_file_from_string</a>(str, verbose, compact_reals, print_signs, real_format, spaces_per_tab, strict_type_checking, trailing_spaces_significant, case_sensitive_keys, no_whitespace, unescape_strings, comment_char, path_mode, path_separator, compress_vectors, allow_duplicate_keys, escape_solidus, stop_on_error, null_to_real_mode, non_normal_mode, use_quiet_nan, strict_integer_type_checking) result(file_object)  
+    private  function <a href='../proc/wrap_initialize_json_file_from_string.html'>wrap_initialize_json_file_from_string</a>(str, verbose, compact_reals, print_signs, real_format, spaces_per_tab, strict_type_checking, trailing_spaces_significant, case_sensitive_keys, no_whitespace, unescape_strings, comment_char, path_mode, path_separator, compress_vectors, allow_duplicate_keys, escape_solidus, stop_on_error, null_to_real_mode, non_normal_mode, use_quiet_nan, strict_integer_type_checking, allow_trailing_comma) result(file_object)  
 
     </h3>
     
@@ -1966,6 +1998,22 @@ all cases).</p><a href="../proc/wrap_initialize_json_file_from_string.html#varia
 <p>(default is true)</p><a href="../proc/wrap_initialize_json_file_from_string.html#variable-strict_integer_type_checking~4" class="pull-right"><emph>Read more&hellip;</emph></a>
             </td>
         </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-allow_trailing_comma~4"></span>
+              logical(kind=LK),
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>allow_trailing_comma</strong></td>
+            <td>
+<p>Allow a single trailing comma in arrays and objects.
+(default is true)</p>
+            </td>
+        </tr>
     </tbody>
   </table>
 
@@ -2185,7 +2233,7 @@ factory used for this file.</p>
                     
                     function
                     <strong><a href='/home/runner/work/json-fortran/json-fortran/doc/proc/initialize_json_file.html'>initialize_json_file</a></strong>
-                    (p, verbose, compact_reals, print_signs, real_format, spaces_per_tab, strict_type_checking, trailing_spaces_significant, case_sensitive_keys, no_whitespace, unescape_strings, comment_char, path_mode, path_separator, compress_vectors, allow_duplicate_keys, escape_solidus, stop_on_error, null_to_real_mode, non_normal_mode, use_quiet_nan, strict_integer_type_checking)
+                    (p, verbose, compact_reals, print_signs, real_format, spaces_per_tab, strict_type_checking, trailing_spaces_significant, case_sensitive_keys, no_whitespace, unescape_strings, comment_char, path_mode, path_separator, compress_vectors, allow_duplicate_keys, escape_solidus, stop_on_error, null_to_real_mode, non_normal_mode, use_quiet_nan, strict_integer_type_checking, allow_trailing_comma)
                   </td>
                   <td><p>Cast a <a href="../type/json_value.html">json_value</a> object as a <a href="../type/json_file.html">json_file</a> object.
   It also calls the <code>initialize()</code> method.</p><a href="../proc/initialize_json_file.html" class="pull-right"><emph>Read more&hellip;</emph></a></td>
@@ -2209,7 +2257,7 @@ as a <a href="../type/json_file.html">json_file</a> object.</p></td>
                     
                     function
                     <strong><a href='/home/runner/work/json-fortran/json-fortran/doc/proc/initialize_json_file_from_string.html'>initialize_json_file_from_string</a></strong>
-                    (str, verbose, compact_reals, print_signs, real_format, spaces_per_tab, strict_type_checking, trailing_spaces_significant, case_sensitive_keys, no_whitespace, unescape_strings, comment_char, path_mode, path_separator, compress_vectors, allow_duplicate_keys, escape_solidus, stop_on_error, null_to_real_mode, non_normal_mode, use_quiet_nan, strict_integer_type_checking)
+                    (str, verbose, compact_reals, print_signs, real_format, spaces_per_tab, strict_type_checking, trailing_spaces_significant, case_sensitive_keys, no_whitespace, unescape_strings, comment_char, path_mode, path_separator, compress_vectors, allow_duplicate_keys, escape_solidus, stop_on_error, null_to_real_mode, non_normal_mode, use_quiet_nan, strict_integer_type_checking, allow_trailing_comma)
                   </td>
                   <td><p>Cast a <abbr title="JavaScript Object Notation: A human friendly syntax for storing and exchanging data">JSON</abbr> string as a <a href="../type/json_file.html">json_file</a> object.
   It also calls the <code>initialize()</code> method.</p><a href="../proc/initialize_json_file_from_string.html" class="pull-right"><emph>Read more&hellip;</emph></a></td>
@@ -2221,7 +2269,7 @@ as a <a href="../type/json_file.html">json_file</a> object.</p></td>
                     
                     function
                     <strong><a href='/home/runner/work/json-fortran/json-fortran/doc/proc/wrap_initialize_json_file_from_string.html'>wrap_initialize_json_file_from_string</a></strong>
-                    (str, verbose, compact_reals, print_signs, real_format, spaces_per_tab, strict_type_checking, trailing_spaces_significant, case_sensitive_keys, no_whitespace, unescape_strings, comment_char, path_mode, path_separator, compress_vectors, allow_duplicate_keys, escape_solidus, stop_on_error, null_to_real_mode, non_normal_mode, use_quiet_nan, strict_integer_type_checking)
+                    (str, verbose, compact_reals, print_signs, real_format, spaces_per_tab, strict_type_checking, trailing_spaces_significant, case_sensitive_keys, no_whitespace, unescape_strings, comment_char, path_mode, path_separator, compress_vectors, allow_duplicate_keys, escape_solidus, stop_on_error, null_to_real_mode, non_normal_mode, use_quiet_nan, strict_integer_type_checking, allow_trailing_comma)
                   </td>
                   <td><p>Alternate version of <a href="../proc/initialize_json_file_from_string.html">initialize_json_file_from_string</a>, where &ldquo;str&rdquo; is kind=CDK.</p></td>
                 </tr>
@@ -2878,7 +2926,7 @@ by specifying the path.</p></td>
         <section>
           <h2>Functions</h2>
               <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-initialize_json_file"></span> <h3>private  function <a href='../proc/initialize_json_file.html'>initialize_json_file</a>(p, verbose, compact_reals, print_signs, real_format, spaces_per_tab, strict_type_checking, trailing_spaces_significant, case_sensitive_keys, no_whitespace, unescape_strings, comment_char, path_mode, path_separator, compress_vectors, allow_duplicate_keys, escape_solidus, stop_on_error, null_to_real_mode, non_normal_mode, use_quiet_nan, strict_integer_type_checking) result(file_object)  
+    <div class="card-header codesum"><span class="anchor" id="proc-initialize_json_file"></span> <h3>private  function <a href='../proc/initialize_json_file.html'>initialize_json_file</a>(p, verbose, compact_reals, print_signs, real_format, spaces_per_tab, strict_type_checking, trailing_spaces_significant, case_sensitive_keys, no_whitespace, unescape_strings, comment_char, path_mode, path_separator, compress_vectors, allow_duplicate_keys, escape_solidus, stop_on_error, null_to_real_mode, non_normal_mode, use_quiet_nan, strict_integer_type_checking, allow_trailing_comma) result(file_object)  
 </h3></div>
     <div class="card-body">
               <dl class="dl-horizontal">
@@ -3263,6 +3311,22 @@ all cases).</p><a href="../proc/initialize_json_file.html#variable-escape_solidu
 <p>(default is true)</p><a href="../proc/initialize_json_file.html#variable-strict_integer_type_checking~2" class="pull-right"><emph>Read more&hellip;</emph></a>
             </td>
         </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-allow_trailing_comma~2"></span>
+              logical(kind=LK),
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>allow_trailing_comma</strong></td>
+            <td>
+<p>Allow a single trailing comma in arrays and objects.
+(default is true)</p>
+            </td>
+        </tr>
     </tbody>
   </table>
 
@@ -3276,7 +3340,7 @@ all cases).</p><a href="../proc/initialize_json_file.html#variable-escape_solidu
   </div>
 
               <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-initialize_json_file_from_string"></span> <h3>private  function <a href='../proc/initialize_json_file_from_string.html'>initialize_json_file_from_string</a>(str, verbose, compact_reals, print_signs, real_format, spaces_per_tab, strict_type_checking, trailing_spaces_significant, case_sensitive_keys, no_whitespace, unescape_strings, comment_char, path_mode, path_separator, compress_vectors, allow_duplicate_keys, escape_solidus, stop_on_error, null_to_real_mode, non_normal_mode, use_quiet_nan, strict_integer_type_checking) result(file_object)  
+    <div class="card-header codesum"><span class="anchor" id="proc-initialize_json_file_from_string"></span> <h3>private  function <a href='../proc/initialize_json_file_from_string.html'>initialize_json_file_from_string</a>(str, verbose, compact_reals, print_signs, real_format, spaces_per_tab, strict_type_checking, trailing_spaces_significant, case_sensitive_keys, no_whitespace, unescape_strings, comment_char, path_mode, path_separator, compress_vectors, allow_duplicate_keys, escape_solidus, stop_on_error, null_to_real_mode, non_normal_mode, use_quiet_nan, strict_integer_type_checking, allow_trailing_comma) result(file_object)  
 </h3></div>
     <div class="card-body">
               <dl class="dl-horizontal">
@@ -3659,6 +3723,22 @@ all cases).</p><a href="../proc/initialize_json_file_from_string.html#variable-e
 <p>(default is true)</p><a href="../proc/initialize_json_file_from_string.html#variable-strict_integer_type_checking~3" class="pull-right"><emph>Read more&hellip;</emph></a>
             </td>
         </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-allow_trailing_comma~3"></span>
+              logical(kind=LK),
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>allow_trailing_comma</strong></td>
+            <td>
+<p>Allow a single trailing comma in arrays and objects.
+(default is true)</p>
+            </td>
+        </tr>
     </tbody>
   </table>
 
@@ -3973,7 +4053,7 @@ as a <a href="../type/json_file.html">json_file</a> object.</p>
   </div>
 
               <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-wrap_initialize_json_file_from_string"></span> <h3>private  function <a href='../proc/wrap_initialize_json_file_from_string.html'>wrap_initialize_json_file_from_string</a>(str, verbose, compact_reals, print_signs, real_format, spaces_per_tab, strict_type_checking, trailing_spaces_significant, case_sensitive_keys, no_whitespace, unescape_strings, comment_char, path_mode, path_separator, compress_vectors, allow_duplicate_keys, escape_solidus, stop_on_error, null_to_real_mode, non_normal_mode, use_quiet_nan, strict_integer_type_checking) result(file_object)  
+    <div class="card-header codesum"><span class="anchor" id="proc-wrap_initialize_json_file_from_string"></span> <h3>private  function <a href='../proc/wrap_initialize_json_file_from_string.html'>wrap_initialize_json_file_from_string</a>(str, verbose, compact_reals, print_signs, real_format, spaces_per_tab, strict_type_checking, trailing_spaces_significant, case_sensitive_keys, no_whitespace, unescape_strings, comment_char, path_mode, path_separator, compress_vectors, allow_duplicate_keys, escape_solidus, stop_on_error, null_to_real_mode, non_normal_mode, use_quiet_nan, strict_integer_type_checking, allow_trailing_comma) result(file_object)  
 </h3></div>
     <div class="card-body">
           
@@ -4349,6 +4429,22 @@ all cases).</p><a href="../proc/wrap_initialize_json_file_from_string.html#varia
             <td><strong>strict_integer_type_checking</strong></td>
             <td>
 <p>(default is true)</p><a href="../proc/wrap_initialize_json_file_from_string.html#variable-strict_integer_type_checking~4" class="pull-right"><emph>Read more&hellip;</emph></a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-allow_trailing_comma~4"></span>
+              logical(kind=LK),
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>allow_trailing_comma</strong></td>
+            <td>
+<p>Allow a single trailing comma in arrays and objects.
+(default is true)</p>
             </td>
         </tr>
     </tbody>
@@ -4828,7 +4924,7 @@ This is just a wrapper for the <a href="../proc/json_file_load_from_string.html"
   </div>
 
               <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-initialize_json_core_in_file"></span> <h3>private  subroutine <a href='../proc/initialize_json_core_in_file.html'>initialize_json_core_in_file</a>(me, verbose, compact_reals, print_signs, real_format, spaces_per_tab, strict_type_checking, trailing_spaces_significant, case_sensitive_keys, no_whitespace, unescape_strings, comment_char, path_mode, path_separator, compress_vectors, allow_duplicate_keys, escape_solidus, stop_on_error, null_to_real_mode, non_normal_mode, use_quiet_nan, strict_integer_type_checking)  
+    <div class="card-header codesum"><span class="anchor" id="proc-initialize_json_core_in_file"></span> <h3>private  subroutine <a href='../proc/initialize_json_core_in_file.html'>initialize_json_core_in_file</a>(me, verbose, compact_reals, print_signs, real_format, spaces_per_tab, strict_type_checking, trailing_spaces_significant, case_sensitive_keys, no_whitespace, unescape_strings, comment_char, path_mode, path_separator, compress_vectors, allow_duplicate_keys, escape_solidus, stop_on_error, null_to_real_mode, non_normal_mode, use_quiet_nan, strict_integer_type_checking, allow_trailing_comma)  
 </h3></div>
     <div class="card-body">
           
@@ -5205,6 +5301,22 @@ all cases).</p><a href="../proc/initialize_json_core_in_file.html#variable-escap
             <td><strong>strict_integer_type_checking</strong></td>
             <td>
 <p>(default is true)</p><a href="../proc/initialize_json_core_in_file.html#variable-strict_integer_type_checking" class="pull-right"><emph>Read more&hellip;</emph></a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-allow_trailing_comma"></span>
+              logical(kind=LK),
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>allow_trailing_comma</strong></td>
+            <td>
+<p>Allow a single trailing comma in arrays and objects.
+(default is true)</p>
             </td>
         </tr>
     </tbody>
@@ -13948,7 +14060,7 @@ cols if using row-major order)</p>
             <p class="text-end">
               Documentation generated by
               <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2024-06-03 04:03              </p>
+ on 2024-06-09 04:04              </p>
           </div>
         </div>
         <br>

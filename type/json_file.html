@@ -79,7 +79,7 @@
 
             <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
               <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
-                 title="<p>28.2% of total for derived types.</p>Including implementation: 1018 statements, 15.3% of total for derived types.">94 statements</a>
+                 title="<p>28.1% of total for derived types.</p>Including implementation: 1019 statements, 15.3% of total for derived types.">94 statements</a>
             </li>
 
             <li class="list-inline-item" id="source-file">
@@ -546,7 +546,7 @@ factory used for this file.</p>
     <ul class="list-group">
           <li class="list-group-item">
                 <h3>
-    private  function <a href='../proc/initialize_json_file.html'>initialize_json_file</a>(p, verbose, compact_reals, print_signs, real_format, spaces_per_tab, strict_type_checking, trailing_spaces_significant, case_sensitive_keys, no_whitespace, unescape_strings, comment_char, path_mode, path_separator, compress_vectors, allow_duplicate_keys, escape_solidus, stop_on_error, null_to_real_mode, non_normal_mode, use_quiet_nan, strict_integer_type_checking) result(file_object)  
+    private  function <a href='../proc/initialize_json_file.html'>initialize_json_file</a>(p, verbose, compact_reals, print_signs, real_format, spaces_per_tab, strict_type_checking, trailing_spaces_significant, case_sensitive_keys, no_whitespace, unescape_strings, comment_char, path_mode, path_separator, compress_vectors, allow_duplicate_keys, escape_solidus, stop_on_error, null_to_real_mode, non_normal_mode, use_quiet_nan, strict_integer_type_checking, allow_trailing_comma) result(file_object)  
 
     </h3>
         <dl class="dl-horizontal">
@@ -939,6 +939,22 @@ all cases).</p><a href="../proc/initialize_json_file.html#variable-escape_solidu
 <p>(default is true)</p><a href="../proc/initialize_json_file.html#variable-strict_integer_type_checking~2" class="pull-right"><emph>Read more&hellip;</emph></a>
             </td>
         </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-allow_trailing_comma~2"></span>
+              logical(kind=LK),
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>allow_trailing_comma</strong></td>
+            <td>
+<p>Allow a single trailing comma in arrays and objects.
+(default is true)</p>
+            </td>
+        </tr>
     </tbody>
   </table>
 
@@ -1015,7 +1031,7 @@ as a <a href="../type/json_file.html">json_file</a> object.</p>
           </li>
           <li class="list-group-item">
                 <h3>
-    private  function <a href='../proc/initialize_json_file_from_string.html'>initialize_json_file_from_string</a>(str, verbose, compact_reals, print_signs, real_format, spaces_per_tab, strict_type_checking, trailing_spaces_significant, case_sensitive_keys, no_whitespace, unescape_strings, comment_char, path_mode, path_separator, compress_vectors, allow_duplicate_keys, escape_solidus, stop_on_error, null_to_real_mode, non_normal_mode, use_quiet_nan, strict_integer_type_checking) result(file_object)  
+    private  function <a href='../proc/initialize_json_file_from_string.html'>initialize_json_file_from_string</a>(str, verbose, compact_reals, print_signs, real_format, spaces_per_tab, strict_type_checking, trailing_spaces_significant, case_sensitive_keys, no_whitespace, unescape_strings, comment_char, path_mode, path_separator, compress_vectors, allow_duplicate_keys, escape_solidus, stop_on_error, null_to_real_mode, non_normal_mode, use_quiet_nan, strict_integer_type_checking, allow_trailing_comma) result(file_object)  
 
     </h3>
         <dl class="dl-horizontal">
@@ -1411,6 +1427,22 @@ all cases).</p><a href="../proc/initialize_json_file_from_string.html#variable-e
 <p>(default is true)</p><a href="../proc/initialize_json_file_from_string.html#variable-strict_integer_type_checking~3" class="pull-right"><emph>Read more&hellip;</emph></a>
             </td>
         </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-allow_trailing_comma~3"></span>
+              logical(kind=LK),
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>allow_trailing_comma</strong></td>
+            <td>
+<p>Allow a single trailing comma in arrays and objects.
+(default is true)</p>
+            </td>
+        </tr>
     </tbody>
   </table>
 
@@ -1423,7 +1455,7 @@ all cases).</p><a href="../proc/initialize_json_file_from_string.html#variable-e
           </li>
           <li class="list-group-item">
                 <h3>
-    private  function <a href='../proc/wrap_initialize_json_file_from_string.html'>wrap_initialize_json_file_from_string</a>(str, verbose, compact_reals, print_signs, real_format, spaces_per_tab, strict_type_checking, trailing_spaces_significant, case_sensitive_keys, no_whitespace, unescape_strings, comment_char, path_mode, path_separator, compress_vectors, allow_duplicate_keys, escape_solidus, stop_on_error, null_to_real_mode, non_normal_mode, use_quiet_nan, strict_integer_type_checking) result(file_object)  
+    private  function <a href='../proc/wrap_initialize_json_file_from_string.html'>wrap_initialize_json_file_from_string</a>(str, verbose, compact_reals, print_signs, real_format, spaces_per_tab, strict_type_checking, trailing_spaces_significant, case_sensitive_keys, no_whitespace, unescape_strings, comment_char, path_mode, path_separator, compress_vectors, allow_duplicate_keys, escape_solidus, stop_on_error, null_to_real_mode, non_normal_mode, use_quiet_nan, strict_integer_type_checking, allow_trailing_comma) result(file_object)  
 
     </h3>
     
@@ -1799,6 +1831,22 @@ all cases).</p><a href="../proc/wrap_initialize_json_file_from_string.html#varia
             <td><strong>strict_integer_type_checking</strong></td>
             <td>
 <p>(default is true)</p><a href="../proc/wrap_initialize_json_file_from_string.html#variable-strict_integer_type_checking~4" class="pull-right"><emph>Read more&hellip;</emph></a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-allow_trailing_comma~4"></span>
+              logical(kind=LK),
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>allow_trailing_comma</strong></td>
+            <td>
+<p>Allow a single trailing comma in arrays and objects.
+(default is true)</p>
             </td>
         </tr>
     </tbody>
@@ -8832,7 +8880,7 @@ length of <code>default</code></p>
     <ul class="list-group">
         <li class="list-group-item">
                   <h3>
-    private  subroutine <a href='../proc/initialize_json_core_in_file.html'>initialize_json_core_in_file</a>(me, verbose, compact_reals, print_signs, real_format, spaces_per_tab, strict_type_checking, trailing_spaces_significant, case_sensitive_keys, no_whitespace, unescape_strings, comment_char, path_mode, path_separator, compress_vectors, allow_duplicate_keys, escape_solidus, stop_on_error, null_to_real_mode, non_normal_mode, use_quiet_nan, strict_integer_type_checking)  
+    private  subroutine <a href='../proc/initialize_json_core_in_file.html'>initialize_json_core_in_file</a>(me, verbose, compact_reals, print_signs, real_format, spaces_per_tab, strict_type_checking, trailing_spaces_significant, case_sensitive_keys, no_whitespace, unescape_strings, comment_char, path_mode, path_separator, compress_vectors, allow_duplicate_keys, escape_solidus, stop_on_error, null_to_real_mode, non_normal_mode, use_quiet_nan, strict_integer_type_checking, allow_trailing_comma)  
 </h3>
     
 
@@ -9209,6 +9257,22 @@ all cases).</p><a href="../proc/initialize_json_core_in_file.html#variable-escap
             <td><strong>strict_integer_type_checking</strong></td>
             <td>
 <p>(default is true)</p><a href="../proc/initialize_json_core_in_file.html#variable-strict_integer_type_checking" class="pull-right"><emph>Read more&hellip;</emph></a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              logical(kind=LK),
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>allow_trailing_comma</strong></td>
+            <td>
+<p>Allow a single trailing comma in arrays and objects.
+(default is true)</p>
             </td>
         </tr>
     </tbody>
@@ -9287,7 +9351,7 @@ all cases).</p><a href="../proc/initialize_json_core_in_file.html#variable-escap
     <ul class="list-group">
         <li class="list-group-item">
                   <h3>
-    private  subroutine <a href='../proc/initialize_json_core_in_file.html'>initialize_json_core_in_file</a>(me, verbose, compact_reals, print_signs, real_format, spaces_per_tab, strict_type_checking, trailing_spaces_significant, case_sensitive_keys, no_whitespace, unescape_strings, comment_char, path_mode, path_separator, compress_vectors, allow_duplicate_keys, escape_solidus, stop_on_error, null_to_real_mode, non_normal_mode, use_quiet_nan, strict_integer_type_checking)  
+    private  subroutine <a href='../proc/initialize_json_core_in_file.html'>initialize_json_core_in_file</a>(me, verbose, compact_reals, print_signs, real_format, spaces_per_tab, strict_type_checking, trailing_spaces_significant, case_sensitive_keys, no_whitespace, unescape_strings, comment_char, path_mode, path_separator, compress_vectors, allow_duplicate_keys, escape_solidus, stop_on_error, null_to_real_mode, non_normal_mode, use_quiet_nan, strict_integer_type_checking, allow_trailing_comma)  
 </h3>
     
 
@@ -9664,6 +9728,22 @@ all cases).</p><a href="../proc/initialize_json_core_in_file.html#variable-escap
             <td><strong>strict_integer_type_checking</strong></td>
             <td>
 <p>(default is true)</p><a href="../proc/initialize_json_core_in_file.html#variable-strict_integer_type_checking" class="pull-right"><emph>Read more&hellip;</emph></a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              logical(kind=LK),
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>allow_trailing_comma</strong></td>
+            <td>
+<p>Allow a single trailing comma in arrays and objects.
+(default is true)</p>
             </td>
         </tr>
     </tbody>
@@ -23039,7 +23119,7 @@ cols if using row-major order)</p>
             <p class="text-end">
               Documentation generated by
               <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2024-06-03 04:03              </p>
+ on 2024-06-09 04:04              </p>
           </div>
         </div>
         <br>
