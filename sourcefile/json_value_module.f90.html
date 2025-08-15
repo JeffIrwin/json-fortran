@@ -12020,23 +12020,25 @@ large graphs.</div>
 <a id="ln-11599" name="ln-11599" href="#ln-11599"></a><span class="k">            write</span><span class="p">(</span><span class="n">io_unit</span><span class="p">,</span><span class="s1">&#39;(A)&#39;</span><span class="p">,</span><span class="n">iostat</span><span class="o">=</span><span class="n">istat</span><span class="p">)</span><span class="w"> </span><span class="n">error_msg</span>
 <a id="ln-11600" name="ln-11600" href="#ln-11600"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">istat</span><span class="o">/=</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
 <a id="ln-11601" name="ln-11601" href="#ln-11601"></a><span class="w">                </span><span class="c">! in this case, just try to write to the error_unit</span>
-<a id="ln-11602" name="ln-11602" href="#ln-11602"></a><span class="w">                </span><span class="k">call </span><span class="n">integer_to_string</span><span class="p">(</span><span class="n">io_unit</span><span class="p">,</span><span class="n">int_fmt</span><span class="p">,</span><span class="n">tmp</span><span class="p">)</span>
-<a id="ln-11603" name="ln-11603" href="#ln-11603"></a><span class="w">                </span><span class="k">write</span><span class="p">(</span><span class="n">error_unit</span><span class="p">,</span><span class="s1">&#39;(A)&#39;</span><span class="p">,</span><span class="n">iostat</span><span class="o">=</span><span class="n">istat</span><span class="p">)</span><span class="w"> </span><span class="s1">&#39;Error writing to unit &#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">tmp</span><span class="p">)</span>
-<a id="ln-11604" name="ln-11604" href="#ln-11604"></a><span class="w">                </span><span class="k">write</span><span class="p">(</span><span class="n">error_unit</span><span class="p">,</span><span class="s1">&#39;(A)&#39;</span><span class="p">,</span><span class="n">iostat</span><span class="o">=</span><span class="n">istat</span><span class="p">)</span><span class="w"> </span><span class="n">error_msg</span>
-<a id="ln-11605" name="ln-11605" href="#ln-11605"></a><span class="w">            </span><span class="k">end if</span>
-<a id="ln-11606" name="ln-11606" href="#ln-11606"></a><span class="k">        else</span>
-<a id="ln-11607" name="ln-11607" href="#ln-11607"></a><span class="k">            write</span><span class="p">(</span><span class="n">output_unit</span><span class="p">,</span><span class="s1">&#39;(A)&#39;</span><span class="p">,</span><span class="n">iostat</span><span class="o">=</span><span class="n">istat</span><span class="p">)</span><span class="w"> </span><span class="n">error_msg</span>
-<a id="ln-11608" name="ln-11608" href="#ln-11608"></a><span class="w">        </span><span class="k">end if</span>
-<a id="ln-11609" name="ln-11609" href="#ln-11609"></a><span class="k">        deallocate</span><span class="p">(</span><span class="n">error_msg</span><span class="p">)</span>
-<a id="ln-11610" name="ln-11610" href="#ln-11610"></a><span class="w">        </span><span class="k">call </span><span class="n">json</span><span class="p">%</span><span class="n">clear_exceptions</span><span class="p">()</span>
-<a id="ln-11611" name="ln-11611" href="#ln-11611"></a><span class="w">    </span><span class="k">end if</span>
-<a id="ln-11612" name="ln-11612" href="#ln-11612"></a>
-<a id="ln-11613" name="ln-11613" href="#ln-11613"></a><span class="k">    end subroutine </span><span class="n">json_print_error_message</span>
-<a id="ln-11614" name="ln-11614" href="#ln-11614"></a><span class="c">!*****************************************************************************************</span>
-<a id="ln-11615" name="ln-11615" href="#ln-11615"></a>
+<a id="ln-11602" name="ln-11602" href="#ln-11602"></a><span class="w">                </span><span class="c">! [convert to IK integer, we assume this will be ok since</span>
+<a id="ln-11603" name="ln-11603" href="#ln-11603"></a><span class="w">                </span><span class="c">!  normally these io units are default ints]</span>
+<a id="ln-11604" name="ln-11604" href="#ln-11604"></a><span class="w">                </span><span class="k">call </span><span class="n">integer_to_string</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">io_unit</span><span class="p">,</span><span class="n">IK</span><span class="p">),</span><span class="n">int_fmt</span><span class="p">,</span><span class="n">tmp</span><span class="p">)</span>
+<a id="ln-11605" name="ln-11605" href="#ln-11605"></a><span class="w">                </span><span class="k">write</span><span class="p">(</span><span class="n">error_unit</span><span class="p">,</span><span class="s1">&#39;(A)&#39;</span><span class="p">,</span><span class="n">iostat</span><span class="o">=</span><span class="n">istat</span><span class="p">)</span><span class="w"> </span><span class="s1">&#39;Error writing to unit &#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">tmp</span><span class="p">)</span>
+<a id="ln-11606" name="ln-11606" href="#ln-11606"></a><span class="w">                </span><span class="k">write</span><span class="p">(</span><span class="n">error_unit</span><span class="p">,</span><span class="s1">&#39;(A)&#39;</span><span class="p">,</span><span class="n">iostat</span><span class="o">=</span><span class="n">istat</span><span class="p">)</span><span class="w"> </span><span class="n">error_msg</span>
+<a id="ln-11607" name="ln-11607" href="#ln-11607"></a><span class="w">            </span><span class="k">end if</span>
+<a id="ln-11608" name="ln-11608" href="#ln-11608"></a><span class="k">        else</span>
+<a id="ln-11609" name="ln-11609" href="#ln-11609"></a><span class="k">            write</span><span class="p">(</span><span class="n">output_unit</span><span class="p">,</span><span class="s1">&#39;(A)&#39;</span><span class="p">,</span><span class="n">iostat</span><span class="o">=</span><span class="n">istat</span><span class="p">)</span><span class="w"> </span><span class="n">error_msg</span>
+<a id="ln-11610" name="ln-11610" href="#ln-11610"></a><span class="w">        </span><span class="k">end if</span>
+<a id="ln-11611" name="ln-11611" href="#ln-11611"></a><span class="k">        deallocate</span><span class="p">(</span><span class="n">error_msg</span><span class="p">)</span>
+<a id="ln-11612" name="ln-11612" href="#ln-11612"></a><span class="w">        </span><span class="k">call </span><span class="n">json</span><span class="p">%</span><span class="n">clear_exceptions</span><span class="p">()</span>
+<a id="ln-11613" name="ln-11613" href="#ln-11613"></a><span class="w">    </span><span class="k">end if</span>
+<a id="ln-11614" name="ln-11614" href="#ln-11614"></a>
+<a id="ln-11615" name="ln-11615" href="#ln-11615"></a><span class="k">    end subroutine </span><span class="n">json_print_error_message</span>
 <a id="ln-11616" name="ln-11616" href="#ln-11616"></a><span class="c">!*****************************************************************************************</span>
-<a id="ln-11617" name="ln-11617" href="#ln-11617"></a><span class="w">    </span><span class="k">end module </span><span class="n">json_value_module</span>
+<a id="ln-11617" name="ln-11617" href="#ln-11617"></a>
 <a id="ln-11618" name="ln-11618" href="#ln-11618"></a><span class="c">!*****************************************************************************************</span>
+<a id="ln-11619" name="ln-11619" href="#ln-11619"></a><span class="w">    </span><span class="k">end module </span><span class="n">json_value_module</span>
+<a id="ln-11620" name="ln-11620" href="#ln-11620"></a><span class="c">!*****************************************************************************************</span>
 </pre></div>
 
       </section>
@@ -12058,7 +12060,7 @@ large graphs.</div>
             <p class="text-end">
               Documentation generated by
               <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2025-04-11 04:01 +0000             </p>
+ on 2025-08-15 03:59 +0000             </p>
           </div>
         </div>
         <br>
